@@ -1,6 +1,8 @@
 import pytest
 
-from post import Post
+from blueprint_posts.dao.post import Post
+from blueprint_api.api import api_blueprint
+from flask import Flask
 
 
 @pytest.fixture()
@@ -35,3 +37,10 @@ def hanks_posts():
         likes_count=76,
         pk=7
     )]
+
+
+@pytest.fixture()
+def app():
+    app = Flask(__name__)
+    app.register_blueprint(api_blueprint)
+    return app

@@ -2,7 +2,7 @@ import json
 import os
 
 from typing import List, Dict
-from post import Post
+from blueprint_posts.dao.post import Post
 
 
 class PostDAO:
@@ -11,7 +11,7 @@ class PostDAO:
         self.posts_path = os.path.join("data", "posts.json")
         self.comments_path = os.path.join("data", "comments.json")
 
-    def get_posts_all(self) -> List[Post]:
+    def load_posts_all(self) -> List[Post]:
         """Возвращает список всех постов"""
 
         with open(self.posts_path, "r", encoding="UTF-8") as file:
@@ -23,6 +23,9 @@ class PostDAO:
                                       post["content"], post["views_count"], post["likes_count"], post["pk"]))
 
         return current_posts
+
+    def get_posts_all(self) -> List[Post]:
+        return self.load_posts_all()
 
     def get_posts_by_user(self, user_name: str) -> List[Post]:
         """Возвращает список всех постов заданного пользователя"""

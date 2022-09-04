@@ -1,6 +1,6 @@
 import pytest
 
-from postsDAO import PostDAO
+from blueprint_posts.dao.postsDAO import PostDAO
 
 postDAO = PostDAO()
 
