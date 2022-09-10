@@ -85,3 +85,18 @@ class PostDAO:
                 return post
 
         raise ValueError("Поста с заданным pk не существует")
+
+    def get_posts_by_tag(self, tag: str) -> List[Post]:
+        """Возвращает список постов по тегу"""
+        if type(tag) != str:
+            raise TypeError
+
+        posts = self.get_posts_all()
+        relevant_posts = []
+        for post in posts:
+            tags = post.get_posts_tags()
+            print(tags)
+            if tag in tags:
+                relevant_posts.append(post)
+
+        return relevant_posts

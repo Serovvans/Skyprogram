@@ -45,3 +45,10 @@ def test_get_post_by_pk(simple_post):
 
     with pytest.raises(ValueError):
         postDAO.get_post_by_pk(15)
+
+
+def test_get_post_by_tag():
+    with pytest.raises(TypeError):
+        postDAO.get_posts_by_tag(5)
+
+    assert len(postDAO.get_posts_by_tag("#кот")) == 1
